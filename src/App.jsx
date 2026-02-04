@@ -1,3 +1,4 @@
+import ChatBotFST from "./TreeDecicions/ChatBotFST"
 import ButtonWhatsApp from "./Components/ButtonWhatsApp"
 import Acreditattions from "./Components/Acreditattions"
 import ButtonsActtion from "./Components/ButtonsActtion"
@@ -23,6 +24,8 @@ const App = () => {
           </main>
           
           <Footer />
+
+          <ChatBotFST />
           <ButtonWhatsApp />
       </div>
 
