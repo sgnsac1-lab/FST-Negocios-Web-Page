@@ -1,5 +1,7 @@
+import ButtonWhatsApp from "./Components/ButtonWhatsApp"
 import Acreditattions from "./Components/Acreditattions"
 import ButtonsActtion from "./Components/ButtonsActtion"
+import Footer from "./Components/Footer"
 import Hero from "./Components/Hero"
 import Navbar from "./Components/Navbar"
 import Services from "./Components/Services"
@@ -10,7 +12,7 @@ const App = () => {
 
   return(
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full gap-2">
         <Navbar />
           <main className="w-full h-full">
             <Hero />
@@ -19,6 +21,9 @@ const App = () => {
             <Acreditattions />
             <SuccesStorys />
           </main>
+          
+          <Footer />
+          <ButtonWhatsApp />
       </div>
 
     </>
