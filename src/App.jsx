@@ -25,8 +25,8 @@ const App = () => {
           
           <Footer />
 
-          <ChatBotFST />
           <ButtonWhatsApp />
+          <ChatBotFST />
       </div>
 
     </>

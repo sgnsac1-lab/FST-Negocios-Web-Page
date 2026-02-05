@@ -8,7 +8,7 @@ const ButtonWhatsApp = () => {
       href="https://wa.me/51949638568"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-100 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_10px_25px_rgba(37,211,102,0.4)] hover:scale-110 hover:-translate-y-1 transition-all duration-300 group"
+      className="fixed bottom-27 right-6 z-100 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_10px_25px_rgba(37,211,102,0.4)] hover:scale-110 hover:-translate-y-1 transition-all duration-300 group"
       aria-label="Contactar por WhatsApp"
     >
       <FontAwesomeIcon icon={faWhatsapp}/>
