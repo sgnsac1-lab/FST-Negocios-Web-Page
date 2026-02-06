@@ -35,7 +35,7 @@ const Acreditattions = () => {
               <div className="group relative h-full w-70 md:w-fit">
                 <div className="absolute -inset-1 bg-linear-to-r from-blue-600 to-cyan-500 rounded-[2.5rem] blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                 
-                <div className="relative h-full bg-slate-800/80 backdrop-blur-xl border border-white/10 rounded-[2.4rem] p-8 md:p-10 flex flex-col transition-all duration-500 group-hover:translate-y-2">
+                <div className="relative h-full bg-slate-800/80 backdrop-blur-xl border border-white/10 rounded-[2.4rem] p-8 md:p-10 flex flex-col justify-center items-center md:justify-between md:items-stretch transition-all duration-500 group-hover:translate-y-2">
                     
                     {/* Header with Badge Icon */}
                     <div className="flex flex-col md:flex-row gap-5 md:gap-0 md:justify-between md:items-start justify-center items-center mb-8 text-center md:text-left">
@@ -57,10 +57,10 @@ const Acreditattions = () => {
                     <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight group-hover:text-blue-300 transition-colors md:w-100 w-60 text-center md:text-left">
                         Centro de Transformacion Digital
                     </h3>
-                    <div className="mt-4 w-12 h-1 bg-blue-500 rounded-full transition-all duration-500 group-hover:w-24"></div>
+                    <div className="mt-4 md:w-12 h-1 bg-blue-500 rounded-full transition-all duration-500 group-hover:w-24"></div>
                     </div>
 
-                    <p className="text-slate-400 text-sm mb-10 leading-relaxed italic md:w-95 w-50">
+                    <p className="text-slate-400 text-sm mb-10 leading-relaxed italic md:w-95 w-50 text-center md:text-left">
                     "Comprometidos con los estandares más altos del Ministerio de la Produccion para el desarrollo empresarial."
                     </p>
 
@@ -83,7 +83,7 @@ const Acreditattions = () => {
               <div className="group relative h-full w-70 md:w-fit">
                 <div className="absolute -inset-1 bg-linear-to-r from-blue-600 to-cyan-500 rounded-[2.5rem] blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                 
-                <div className="relative h-full bg-slate-800/80 backdrop-blur-xl border border-white/10 rounded-[2.4rem] p-8 md:p-10 flex flex-col transition-all duration-500 group-hover:translate-y-2">
+                <div className="relative h-full bg-slate-800/80 backdrop-blur-xl border border-white/10 rounded-[2.4rem] p-8 md:p-10 flex flex-col justify-center items-center md:justify-between md:items-stretch transition-all duration-500 group-hover:translate-y-2">
                     
                     {/* Header with Badge Icon */}
                     <div className="flex flex-col md:flex-row gap-5 md:gap-0 md:justify-between md:items-start mb-8 justify-center items-center text-center md:text-left">
@@ -101,14 +101,14 @@ const Acreditattions = () => {
 
                     {/* Content */}
                     <div className="mb-8">
-                    <h4 className="text-blue-400 text-xs w-60 font-black uppercase tracking-[0.3em] mb-3">ACREDITACION RED DE ACELERADORAS</h4>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight group-hover:text-blue-300 transition-colors md:w-100 w-60">
+                    <h4 className="text-blue-400 text-xs w-60 font-black uppercase tracking-[0.3em] mb-3 text-center md:text-left">ACREDITACION RED DE ACELERADORAS</h4>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight group-hover:text-blue-300 transition-colors md:w-100 w-60 text-center md:text-left">
                         Red de Aceleradoras de la PCM
                     </h3>
-                    <div className="mt-4 w-12 h-1 bg-blue-500 rounded-full transition-all duration-500 group-hover:w-24"></div>
+                    <div className="mt-4 md:w-12 h-1 bg-blue-500 rounded-full transition-all duration-500 group-hover:w-24"></div>
                     </div>
 
-                    <p className="text-slate-400 text-sm mb-10 leading-relaxed italic md:w-95 w-50">
+                    <p className="text-slate-400 text-sm mb-10 leading-relaxed italic md:w-95 w-50 text-center md:text-left">
                     "Comprometidos con los estandares mas altos de la PCM para el desarrollo empresarial"
                     </p>
 

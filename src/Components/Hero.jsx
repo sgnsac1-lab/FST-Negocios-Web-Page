@@ -25,10 +25,11 @@ const Hero = () => {
                             autoPlay 
                             muted 
                             loop 
-                            playsInline 
+                            playsInline
+                            preload="auto"
                             className="w-full h-120 object-cover md:object-[center_20%] object-[right_90%]" 
                         >
-                            <source src={Home1} />
+                            <source src={Home1} type="video/mp4" />
                         </video>
                     </div>
 
