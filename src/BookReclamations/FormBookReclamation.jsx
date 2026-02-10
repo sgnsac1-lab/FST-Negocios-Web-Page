@@ -1,9 +1,14 @@
+import { useState } from 'react'
 
 const FormBookReclamation = () => {
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e) => {
   e.preventDefault();
   const form = e.target
+
+  setIsSubmitting(true)
   
   const formData = {
     nombre_cliente: e.target.nombre_cliente.value,
@@ -24,7 +29,7 @@ const FormBookReclamation = () => {
 
   try {
     // eslint-disable-next-line no-unused-vars
-      const data = await fetch('https://script.google.com/macros/s/AKfycbxwJcRHJLDuTWTZpjWARyoWtOKm_jy2ebbBH80Zg2m1f_pSEWNlOxTFJoTpexRJjLln/exec', {
+      const data = await fetch('https://script.google.com/macros/s/AKfycbzJ3kf4bwiVYTs30IEchoJRNE7vem73JU2gZrwgFMG2GKYHom13lbCQZyds9lGRF3Vd/exec', {
       method: 'POST',
       mode: 'no-cors', // Importante para evitar bloqueos de CORS con Google
       headers: {
@@ -35,9 +40,11 @@ const FormBookReclamation = () => {
 
     alert("¡Reclamación enviada con éxito!");
     form.reset();
+    setIsSubmitting(false)
     
   } catch (error) {
     console.error("Error:", error);
+    setIsSubmitting(false)
     }
   };
 
@@ -182,7 +189,7 @@ const FormBookReclamation = () => {
             <p>(1) RECLAMO: Disconformidad sobre el producto o servicio comprado.</p>
             <p>(2) QUEJA: Malestar con la atención o procesos, no con el producto.</p>
 
-            <button className="w-30 p-3 bg-red-700 border rounded-md hover:bg-red-600 font-bold text-white" type="onSubmit">Enviar</button>
+            <button className="w-30 p-3 bg-red-700 border rounded-md hover:bg-red-600 font-bold text-white" type="onSubmit" disabled={isSubmitting}>{isSubmitting ? "Enviando Reclamo...":"Enviar"}</button>
           </section>
 
         </form>
