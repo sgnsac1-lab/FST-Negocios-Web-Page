@@ -1,20 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faTiktok, faYoutube, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import {Link} from 'react-router-dom'
 import logo from "../Assets/Logo.jpeg"
 
 const Footer = () => {
 
     return(
 
-        <section className="w-full grid md:grid-cols-3 gap-5 md:gap-0 px-5 py-5 items-center">
+        <section className="w-full grid md:grid-cols-4 gap-5 md:gap-0 px-5 md:px-25 py-5 items-center">
 
             <div className="flex flex-col items-center md:items-start gap-2">
                     <img src={logo} className='size-35' />
-                <p className="md:w-90 w-60 text-slate-500 text-center md:text-left">Expertos en consultoria estrategica, gestion de fondos estatales y transformacion digital para impulsar el crecimiento de tu empresa.</p>
+                <p className="md:w-70 w-60 text-slate-500 text-center md:text-left">Expertos en consultoria estrategica, gestion de fondos estatales y transformacion digital para impulsar el crecimiento de tu empresa.</p>
             </div>
 
-            <div className="flex flex-col items-center gap-5">
+            <div className="flex flex-col items-center gap-5 h-35">
                 <h4 className='font-bold'>CONTACTO DIRECTO</h4>
 
                 <div className="flex flex-col">
@@ -23,7 +24,15 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col md:items-end items-center gap-5">
+            <div className="flex flex-col items-center gap-5 h-35">
+                <h4 className='font-bold'>SERVICIO AL CLIENTE</h4>
+
+                <div className="flex flex-col">
+                    <Link to="/libro-de-reclamaciones">Libro de reclamaciones</Link>
+                </div>
+            </div>
+
+            <div className="flex flex-col md:items-end items-center gap-5 h-35">
                 <h3 className="font-bold">NUESTRAS REDES SOCIALES</h3>
                 <div className="flex flex-col md:flex-row md:justify-start justify-center items-center gap-2">
                     {/* Facebook (Link al formulario como se solicitó) */}
