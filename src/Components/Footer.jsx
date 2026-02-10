@@ -3,6 +3,7 @@ import { faFacebookF, faInstagram, faTiktok, faYoutube, faWhatsapp } from '@fort
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
 import logo from "../Assets/Logo.jpeg"
+import LibroReclamaciones from "../Assets/LibroReclamaciones.webp"
 
 const Footer = () => {
 
@@ -27,7 +28,8 @@ const Footer = () => {
             <div className="flex flex-col items-center gap-5 h-35">
                 <h4 className='font-bold'>SERVICIO AL CLIENTE</h4>
 
-                <div className="flex flex-col">
+                <div className="flex flex-col items-center">
+                    <img src={LibroReclamaciones} className='size-25' />
                     <Link to="/libro-de-reclamaciones">Libro de reclamaciones</Link>
                 </div>
             </div>
