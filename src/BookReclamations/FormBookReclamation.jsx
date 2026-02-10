@@ -45,7 +45,7 @@ const FormBookReclamation = () => {
 
   return (
     <>
-      <section className="flex flex-col gap-5 items-center w-full mt-40 bg-gray-200 py-10">
+      <section className="flex flex-col gap-5 items-center w-full mt-40 bg-gray-200 py-10 px-5 md:px-0">
         
         <div className="">
           <h1 className="font-bold text-4xl text-left">LIBRO DE RECLAMACIONES</h1>
@@ -56,20 +56,20 @@ const FormBookReclamation = () => {
         </div>
 
         <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
-          <section className="h-fit w-250 flex flex-col gap-4 bg-white p-5 rounded-[20px]">
+          <section className="h-fit md:w-250 w-100 flex flex-col gap-4 bg-white p-5 rounded-[20px]">
           <h3>1.- IDENTIFICACION DEL CONSUMIDOR RECLAMANTE</h3>
             <div className="grid md:grid-cols-2 gap-2 ">
               <div className="flex flex-col">
                 <label>Nombres completos</label>
-                <input type="text" name="nombre_cliente" required className="w-100 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50" />
+                <input type="text" name="nombre_cliente" required className="md:w-100 w-80 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50" />
               </div>
               <div className="flex flex-col">
                 <label>Domicilio</label>
-                <input type="text" name="domicilio_cliente" required className="w-100 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50" />
+                <input type="text" name="domicilio_cliente" required className="md:w-100 w-80 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50" />
               </div>
               <div className="flex flex-col">
                 <label>Tipo de documento</label>
-                <select defaultValue="" name="tipo_documento" required className="w-100 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50">
+                <select defaultValue="" name="tipo_documento" required className="md:w-100 w-80 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50">
                   <option value="">--Selecione--</option>
                   <option value="dni">DNI</option>
                   <option value="pasaporte">Pasaporte</option>
@@ -79,24 +79,24 @@ const FormBookReclamation = () => {
               </div>
               <div className="flex flex-col">
                 <label>Numero de documento</label>
-                <input type="number" name="numero_documento" required className="w-100 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50" onWheel={(e) => e.target.blur()} />
+                <input type="number" name="numero_documento" required className="md:w-100 w-80 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50" onWheel={(e) => e.target.blur()} />
               </div>
               <div className="flex flex-col">
                 <label>Fecha de nacimiento</label>
-                <input type="date" name="fech_nac_cliente" required className="w-100 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50" />
+                <input type="date" name="fech_nac_cliente" required className="md:w-100 w-80 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50" />
               </div>
               <div className="flex flex-col">
                 <label>Correo electrónico</label>
-                <input type="email" name="correo_cliente" required className="w-100 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50" />
+                <input type="email" name="correo_cliente" required className="md:w-100 w-80 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50" />
               </div>
               <div className="flex flex-col">
                 <label>Telefono / Celular</label>
-                <input type="number" name="telefono_cliente" required className="w-100 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50" onInput={(e) => {if (e.target.value < 0) e.target.value = 0; if (e.target.value.length > 9) {e.target.value = e.target.value.slice(0, 9);}}} onWheel={(e) => e.target.blur()} />
+                <input type="number" name="telefono_cliente" required className="md:w-100 w-80 p-3 border rounded-md outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-200 focus:bg-slate-50" onInput={(e) => {if (e.target.value < 0) e.target.value = 0; if (e.target.value.length > 9) {e.target.value = e.target.value.slice(0, 9);}}} onWheel={(e) => e.target.blur()} />
               </div>
             </div>
           </section>
 
-          <section className="h-fit w-250 flex flex-col gap-4 bg-white p-5 rounded-[20px]">
+          <section className="h-fit md:w-250 flex flex-col gap-4 bg-white p-5 rounded-[20px]">
             <h3>2.- IDENTIFICACION DEL BIEN CONTRATADO</h3>
 
             <div className="flex flex-col">
@@ -151,7 +151,7 @@ const FormBookReclamation = () => {
             </div>
           </section>
 
-          <section className="h-fit w-250 flex flex-col gap-4 bg-white p-5 rounded-[20px]">
+          <section className="h-fit md:w-250 flex flex-col gap-4 bg-white p-5 rounded-[20px]">
             <h3>3.- DETALLE DE LA RECLAMACION Y PEDIDO DEL CONSUMIDOR</h3>
 
             <div className="flex flex-col">
