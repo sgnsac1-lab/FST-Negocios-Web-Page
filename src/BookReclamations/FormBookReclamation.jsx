@@ -24,7 +24,7 @@ const FormBookReclamation = () => {
 
   try {
     // eslint-disable-next-line no-unused-vars
-      const data = await fetch('https://script.google.com/macros/s/AKfycbx2p5_PZ6LxYtJmb5JQNX2cVyG9-9Uzir3GGKrHKXyZV_s57X6sJIhBqdQDmDJENkIY/exec', {
+      const data = await fetch('https://script.google.com/macros/s/AKfycbxwJcRHJLDuTWTZpjWARyoWtOKm_jy2ebbBH80Zg2m1f_pSEWNlOxTFJoTpexRJjLln/exec', {
       method: 'POST',
       mode: 'no-cors', // Importante para evitar bloqueos de CORS con Google
       headers: {

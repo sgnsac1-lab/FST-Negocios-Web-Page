@@ -34,7 +34,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col md:items-end items-center gap-5 h-35">
+            <div className="flex flex-col md:items-end items-center gap-5 h-35 mt-15 md:mt-0">
                 <h3 className="font-bold">NUESTRAS REDES SOCIALES</h3>
                 <div className="flex flex-col md:flex-row md:justify-start justify-center items-center gap-2">
                     {/* Facebook (Link al formulario como se solicitó) */}
