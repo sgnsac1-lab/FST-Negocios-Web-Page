@@ -1,4 +1,5 @@
 import Home1 from "../Assets/Home1.mp4"
+import Banner from "../Assets/BannerFSTNEGOCIOS.jpg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeHigh, faVolumeMute } from '@fortawesome/free-solid-svg-icons'
 import { useState, useRef } from 'react'
@@ -17,9 +18,9 @@ const Hero = () => {
     };
 
     return(
-        <section className="w-full flex flex-col items-center gap-10 relative mt-40" >
+        <section className="w-full flex flex-col items-center gap-10 relative mt-40">
                     {/* Contenedor del Video de Fondo */}
-                    <div className="absolute w-full inset-0 -z-10">
+                    <div className="absolute w-full inset-0 -z-10 bg-no-repeat bg-cover bg-center" style={{ backgroundImage: `url(${Banner})` }}>
                         <video 
                             ref={videoRef} 
                             autoPlay 
@@ -27,7 +28,8 @@ const Hero = () => {
                             loop 
                             playsInline
                             preload="auto"
-                            className="w-full h-120 object-cover md:object-[center_20%] object-[right_90%]" 
+                            poster={Banner}
+                            className="w-full h-120 object-cover md:object-[center_20%] object-[right_90%] block" 
                         >
                             <source src={Home1} type="video/mp4" />
                         </video>
