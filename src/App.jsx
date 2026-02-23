@@ -8,6 +8,7 @@ import Hero from "./Components/Hero"
 import Navbar from "./Components/Navbar"
 import Services from "./Components/Services"
 import SuccesStorys from "./Components/SuccesStorys"
+import Certifications from "./Components/Certifications"
 
 import FormBookReclamation  from './BookReclamations/FormBookReclamation'
 
@@ -28,6 +29,7 @@ const App = () => {
               <ButtonsActtion />
               <Services />
               <Acreditattions />
+              <Certifications />
               <SuccesStorys />
             </main>
           } />
