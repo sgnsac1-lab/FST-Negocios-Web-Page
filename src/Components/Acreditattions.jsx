@@ -1,10 +1,69 @@
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMedal, faRibbon, faTrophy, faAward, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faFilePdf, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
+import iso9001 from '../Assets/ISO-9001.pdf'
+import iso14001 from '../Assets/Iso-14001.pdf'
+import iso45001 from '../Assets/ISO-45001.pdf'
+import InfoCard from "./InfoCard"
 
 const Acreditattions = () => {
+
+    const [selectedPdf, setSelectedPdf] = useState(null)
+
+    const cardsData = [
+        {
+            icon: faMedal,
+            verifierName: "Ministerio de la Producción",
+            badgeTitle: "ACREDITACION ADHESION",
+            mainTitle: "Centro de Transformación Digital",
+            description: "Comprometidos con los estandares más altos del Ministerio de la Produccion para el desarrollo empresarial.",
+            type: 'link',
+            url: "https://www.gob.pe/institucion/produce/normas-legales/7490544-00011-2025-produce-dgitdf"
+        },
+        {
+            icon: faMedal,
+            verifierName: "PCM",
+            badgeTitle: "ACREDITACION RED DE ACELERADORAS",
+            mainTitle: "Red de Aceleradoras de la PCM",
+            description: "Comprometidos con los estandares mas altos de la PCM para el desarrollo empresarial",
+            type: 'link',
+            url: "https://www.gob.pe/29832-fst-negocios"
+        },
+        {
+            icon: faFilePdf,
+            verifierName: "ISO",
+            badgeTitle: "CERTIFICACIÓN DE CALIDAD",
+            mainTitle: "Norma ISO 9001:2015",
+            description: "Certificación internacional que garantiza productos y servicios alineados con la normativa vigente y las necesidades del cliente.",
+            type: 'pdf',
+            file: iso9001
+        },
+        {
+            icon: faFilePdf,
+            verifierName: "ISO",
+            badgeTitle: "CERTIFICACIÓN DE CALIDAD",
+            mainTitle: "Norma ISO 14001:2015",
+            description: "Certificación en transformación digital sostenible que garantiza procesos automatizados, responsables y en mejora continua.",
+            type: 'pdf',
+            file: iso14001
+        },
+        {
+            icon: faFilePdf,
+            verifierName: "ISO",
+            badgeTitle: "CERTIFICACIÓN DE CALIDAD",
+            mainTitle: "Norma ISO 45001:2018",
+            description: "Estándar global que certifica nuestro Sistema de Gestión de Seguridad y Salud en el Trabajo.",
+            type: 'pdf',
+            file: iso45001
+        }
+    ];
+
+    // 2. DUPLICAMOS LOS DATOS para el efecto infinito
+    const infiniteCards = [...cardsData, ...cardsData]
     
     return(
-        <section className="relative flex flex-col justify-center items-center bg-slate-900 gap-8 pt-5 mt-30">
+        <section className="relative flex flex-col justify-center items-center w-full overflow-x-hidden bg-slate-900 gap-8 pt-5 mt-30">
 
                 <div>
                     {/* Trofeo */}
@@ -26,110 +85,109 @@ const Acreditattions = () => {
             <span className="inline-block py-1 px-4 rounded-full bg-blue-500/10 text-blue-400 font-bold tracking-widest text-xs uppercase border border-blue-500/20 mb-4">
                 Excelencia Certificada
             </span>
-            <h1 className="font-bold md:text-5xl text-center text-3xl w-50 md:w-full text-white">Nuestras <span className='text-blue-500'>Acreditaciones</span> Oficiales</h1>
+            <h1 className="font-bold md:text-5xl text-center text-3xl w-50 md:w-full text-white">Nuestras <span className='text-blue-500'>Acreditaciones</span> y <span className='text-blue-500'>Certificaciones</span> Oficiales</h1>
             <p className="md:w-130 w-50 text-center text-slate-400">Respaldo institucional que garantiza la calidad y seguridad de nuestros servicios de consultoria estrategica.</p>
 
-            <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+            
+            {/* Contenedor del Carrusel Infinito */}
+            <div className="relative w-full overflow-hidden">
+                {/* Gradientes laterales para suavizar la entrada y salida */}
+                <div className="absolute inset-y-0 left-0 md:w-64 bg-linear-to-r from-slate-900 to-transparent z-20 pointer-events-none hidden md:block"></div>
+                <div className="absolute inset-y-0 right-0 md:w-64 bg-linear-to-l from-slate-900 to-transparent z-20 pointer-events-none hidden md:block"></div>
 
-              
-              <div className="group relative h-full w-70 md:w-fit">
-                <div className="absolute -inset-1 bg-linear-to-r from-blue-600 to-cyan-500 rounded-[2.5rem] blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                
-                <div className="relative h-full bg-slate-800/80 backdrop-blur-xl border border-white/10 rounded-[2.4rem] p-8 md:p-10 flex flex-col justify-center items-center md:justify-between md:items-stretch transition-all duration-500 group-hover:translate-y-2">
-                    
-                    {/* Header with Badge Icon */}
-                    <div className="flex flex-col md:flex-row gap-5 md:gap-0 md:justify-between md:items-start justify-center items-center mb-8 text-center md:text-left">
-                        <div className="relative">
-                            <div className="absolute -inset-4 bg-blue-500/20 rounded-full blur-xl group-hover:bg-blue-500/40 transition-all"></div>
-                            <div className="relative w-16 h-16 bg-linear-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg shadow-blue-500/40">
-                            <FontAwesomeIcon icon={faMedal} />
-                            </div>
-                        </div>
-                        <div className="bg-white/5 border border-white/10 px-4 py-2 rounded-xl">
-                            <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest block">Verificado por</span>
-                            <span className="text-white font-bold text-sm">Ministerio de la Produccion</span>
-                        </div>
-                    </div>
+                {/* Track de animación */}
+                <div className="flex gap-7 animate-scroll-acreditaciones hover:pause-scroll py-10">
 
-                    {/* Content */}
-                    <div className="mb-8">
-                    <h4 className="text-blue-400 text-xs font-black uppercase tracking-[0.3em] mb-3 text-center md:text-left">ACREDITACION ADHESION</h4>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight group-hover:text-blue-300 transition-colors md:w-100 w-60 text-center md:text-left">
-                        Centro de Transformacion Digital
-                    </h3>
-                    <div className="mt-4 md:w-12 h-1 bg-blue-500 rounded-full transition-all duration-500 group-hover:w-24"></div>
-                    </div>
+                {/* Tarjetas */}
+                    {infiniteCards.map((card, index) => (
+                        <InfoCard 
+                            key={index} // Importante para React
+                            icon={card.icon}
+                            verifierName={card.verifierName}
+                            badgeTitle={card.badgeTitle}
+                            mainTitle={card.mainTitle}
+                            description={card.description}
+                            footerAction={
+                                card.type === 'link' ? (
+                                    <a 
+                                        href={card.url}
+                                        target='_blank'
+                                        rel="noreferrer"
+                                        className="inline-flex items-center gap-3 bg-white/5 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 w-full justify-center border border-white/10 hover:border-blue-500 shadow-lg group/link"
+                                    >
+                                        <span>Ver perfil oficial</span>
+                                        <i className="fas fa-arrow-right text-xs transition-transform group-hover/link:translate-x-1"></i>
+                                    </a>
+                                ) : (
+                                    <button 
+                                        onClick={() => setSelectedPdf(card.file)}
+                                        className="inline-flex items-center gap-3 bg-white/5 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 w-full justify-center border border-white/10 hover:border-blue-500 shadow-lg group/link"
+                                    >
+                                        <i className="fas fa-eye text-xs"></i>
+                                        <span>Ver PDF</span>
+                                    </button>
+                                )
+                            }
+                        />
+                    ))}
 
-                    <p className="text-slate-400 text-sm mb-10 leading-relaxed italic md:w-95 w-50 text-center md:text-left">
-                    "Comprometidos con los estandares más altos del Ministerio de la Produccion para el desarrollo empresarial."
-                    </p>
-
-                    {/* Footer Link */}
-                    <div className="mt-auto">
-                    <a 
-                        href="https://www.gob.pe/institucion/produce/normas-legales/7490544-00011-2025-produce-dgitdf"
-                        target='_blank'
-                        className="inline-flex items-center gap-3 bg-white/5 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 w-full justify-center border border-white/10 hover:border-blue-500 shadow-lg group/link"
-                    >
-                        <span>Ver resolución</span>
-                        <i className="fas fa-arrow-right text-xs transition-transform group-hover/link:translate-x-1"></i>
-                    </a>
-                    </div>
-                </div>
-                </div>
-
-
-
-              <div className="group relative h-full w-70 md:w-fit">
-                <div className="absolute -inset-1 bg-linear-to-r from-blue-600 to-cyan-500 rounded-[2.5rem] blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                
-                <div className="relative h-full bg-slate-800/80 backdrop-blur-xl border border-white/10 rounded-[2.4rem] p-8 md:p-10 flex flex-col justify-center items-center md:justify-between md:items-stretch transition-all duration-500 group-hover:translate-y-2">
-                    
-                    {/* Header with Badge Icon */}
-                    <div className="flex flex-col md:flex-row gap-5 md:gap-0 md:justify-between md:items-start mb-8 justify-center items-center text-center md:text-left">
-                    <div className="relative">
-                        <div className="absolute -inset-4 bg-blue-500/20 rounded-full blur-xl group-hover:bg-blue-500/40 transition-all"></div>
-                        <div className="relative w-16 h-16 bg-linear-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg shadow-blue-500/40">
-                        <FontAwesomeIcon icon={faMedal} />
-                        </div>
-                    </div>
-                    <div className="bg-white/5 border border-white/10 px-4 py-2 rounded-xl">
-                        <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest block">Verificado por</span>
-                        <span className="text-white font-bold text-sm">PCM</span>
-                    </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="mb-8">
-                    <h4 className="text-blue-400 text-xs w-60 font-black uppercase tracking-[0.3em] mb-3 text-center md:text-left">ACREDITACION RED DE ACELERADORAS</h4>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight group-hover:text-blue-300 transition-colors md:w-100 w-60 text-center md:text-left">
-                        Red de Aceleradoras de la PCM
-                    </h3>
-                    <div className="mt-4 md:w-12 h-1 bg-blue-500 rounded-full transition-all duration-500 group-hover:w-24"></div>
-                    </div>
-
-                    <p className="text-slate-400 text-sm mb-10 leading-relaxed italic md:w-95 w-50 text-center md:text-left">
-                    "Comprometidos con los estandares mas altos de la PCM para el desarrollo empresarial"
-                    </p>
-
-                    {/* Footer Link */}
-                    <div className="mt-auto">
-                    <a 
-                        href="https://www.gob.pe/29832-fst-negocios"
-                        target='_blank'
-                        className="inline-flex items-center gap-3 bg-white/5 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 w-full justify-center border border-white/10 hover:border-blue-500 shadow-lg group/link"
-                    >
-                        <span>Ver perfil oficial</span>
-                        <i className="fas fa-arrow-right text-xs transition-transform group-hover/link:translate-x-1"></i>
-                    </a>
-                    </div>
-                </div>
                 </div>
             </div>
 
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white text-2xl mr-4 group-hover:scale-110 transition-transform">
+
+            {/* Estilos locales para la animación infinita */}
+            <style dangerouslySetInnerHTML={{ __html: `
+                @keyframes scroll-acreditaciones {
+                from { transform: translateX(0); }
+                to { transform: translateX(-50%); }
+                }
+                .animate-scroll-acreditaciones {
+                display: flex;
+                width: max-content; /* Esto está bien, pero el padre debe ser overflow-hidden */
+                animation: scroll-acreditaciones 70s linear infinite ;
+                }
+                /* Agregamos esto para asegurar que no haya scroll lateral en el body */
+                :global(body) {
+                overflow-x: hidden;
+                position: relative;
+                width: 100%;
+                }
+            `}} />
+
+      <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white text-2xl mr-4 group-hover:scale-110 transition-transform">
                 <FontAwesomeIcon icon={faRibbon} />
+      </div>
+
+      {/* 3. El MODAL (Solo se renderiza si showModal es true) */}
+      {selectedPdf && (
+        <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+          <div className="relative bg-white w-full max-w-5xl h-[90vh] rounded-2xl overflow-hidden flex flex-col">
+            
+            {/* Cabecera del Modal */}
+            <div className="flex justify-between items-center p-4 border-b">
+              <h3 className="font-bold text-slate-800">Vista Previa:</h3>
+              <button 
+                onClick={() => setSelectedPdf(null)}
+                className="text-slate-500 hover:text-red-500 transition-colors"
+              >
+                <FontAwesomeIcon icon={faTimesCircle} size="lg" />
+              </button>
             </div>
+
+            {/* Cuerpo del Modal con el iframe */}
+            <div className="flex grow">
+              <iframe 
+                src={`${selectedPdf}#toolbar=0`} 
+                width="100%" 
+                height="100%" 
+                style={{ border: "none" }}
+                title="PDF Preview"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
         </section>
     )
 }
