@@ -18,7 +18,7 @@ const Hero = () => {
     };
 
     return(
-        <section className="w-full flex flex-col items-center gap-10 relative mt-40">
+        <section className="w-full flex flex-col items-center gap-10 relative md:mt-40 mt-25">
                     {/* Contenedor del Video de Fondo */}
                     <div className="absolute w-full inset-0 -z-10 bg-no-repeat bg-cover bg-center" style={{ backgroundImage: `url(${Banner})` }}>
                         <video 

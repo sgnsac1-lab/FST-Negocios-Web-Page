@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMedal, faRibbon, faTrophy, faAward, faStar } from '@fortawesome/free-solid-svg-icons'
 import { faFilePdf, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
@@ -61,6 +61,45 @@ const Acreditattions = () => {
 
     // 2. DUPLICAMOS LOS DATOS para el efecto infinito
     const infiniteCards = [...cardsData, ...cardsData]
+
+    const scrollRef = useRef(null);
+    const positionRef = useRef(0);
+    const requestRef = useRef(null);
+    
+    // targetSpeed es a la velocidad que QUEREMOS ir
+    const [targetSpeed, setTargetSpeed] = useState(1); 
+    // currentSpeed es la velocidad real actual (para el efecto de aceleración suave)
+    const currentSpeed = useRef(1);
+
+    useEffect(() => {
+    // Definimos la función ADENTRO para que useEffect tenga acceso total
+    const animate = () => {
+        if (!scrollRef.current) return;
+
+        // Aceleración suave
+        currentSpeed.current += (targetSpeed - currentSpeed.current) * 0.05;
+        positionRef.current -= currentSpeed.current;
+
+        const halfWidth = scrollRef.current.scrollWidth / 2;
+        if (Math.abs(positionRef.current) >= halfWidth) {
+            positionRef.current = 0;
+        }
+
+        scrollRef.current.style.transform = `translate3d(${positionRef.current}px, 0, 0)`;
+        
+        requestRef.current = requestAnimationFrame(animate);
+    };
+
+    // Iniciamos la animación
+    requestRef.current = requestAnimationFrame(animate);
+    
+    // Limpiamos al desmontar o cambiar velocidad
+    return () => {
+        if (requestRef.current) {
+            cancelAnimationFrame(requestRef.current);
+        }
+    };
+    }, [targetSpeed]);
     
     return(
         <section className="relative flex flex-col justify-center items-center w-full overflow-x-hidden bg-slate-900 gap-8 pt-5 mt-30">
@@ -95,8 +134,19 @@ const Acreditattions = () => {
                 <div className="absolute inset-y-0 left-0 md:w-64 bg-linear-to-r from-slate-900 to-transparent z-20 pointer-events-none hidden md:block"></div>
                 <div className="absolute inset-y-0 right-0 md:w-64 bg-linear-to-l from-slate-900 to-transparent z-20 pointer-events-none hidden md:block"></div>
 
+                {/* ZONAS DE INTERACCIÓN */}
+                {/* ZONA DE ACELERACIÓN (Derecha) */}
+                <div 
+                    className="absolute inset-y-0 right-0 w-20 z-50 cursor-pointer"
+                    onMouseEnter={() => setTargetSpeed(8)} // ¡Súper rápido!
+                    onMouseLeave={() => setTargetSpeed(1)} // Vuelve a la normalidad
+                />
+
                 {/* Track de animación */}
-                <div className="flex gap-7 animate-scroll-acreditaciones hover:pause-scroll py-10">
+                <div 
+                ref={scrollRef}
+                className="flex gap-7 py-10"
+                style={{ width: 'max-content', willChange: 'transform' }}>
 
                 {/* Tarjetas */}
                     {infiniteCards.map((card, index) => (
