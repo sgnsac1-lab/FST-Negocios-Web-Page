@@ -48,7 +48,7 @@ const Hero = () => {
                     </button>
 
                     {/* TÍTULO CENTRADO - Se usa mx-auto y w-full con max-w para que no se rompa */}
-                    <div className="flex flex-col justify-between items-start md:p-8 p-2 bg-black/40 backdrop-blur-md border border-white/20 shadow-2xl text-white rounded-3xl md:w-180 w-40 h-100  md:ml-30">
+                    <div className="flex flex-col justify-between items-start md:px-8 md:py-8 px-2 py-4 bg-black/40 backdrop-blur-md border border-white/20 shadow-2xl text-white rounded-3xl md:w-180 w-40 h-105 md:ml-30">
                         <h1 className="md:text-6xl text-xl font-bold">
                             Te ayudamos a acceder a <span className="text-blue-500">Fondos del Estado</span>
                         </h1>
