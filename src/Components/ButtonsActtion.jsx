@@ -74,8 +74,8 @@ const ButtonsActtion = () => {
         <section className="w-full bg-slate-900 py-2">
 
             <div className='w-full flex justify-center items-center mb-10'>
-                <div className='md:w-300 w-80 border p-2 rounded-lg flex flex-col md:flex-row items-center gap-2 text-white text-lg md:divide-x divide-y divide-gray-600 h-90 md:h-fit'>
-                    <div className='flex items-center gap-4'>
+                <div className='md:w-300 w-80 border p-4 rounded-lg flex flex-col md:flex-row items-center justify-between gap-2 text-white text-lg md:divide-x not-md:divide-y divide-gray-600 h-110 md:h-fit'>
+                    <div className='flex items-center gap-4 h-20'>
                         <FontAwesomeIcon icon={faUsers} className='text-4xl' />
                         <div className='flex flex-col'>
                             <p className='font-bold'>+250</p>
@@ -85,11 +85,10 @@ const ButtonsActtion = () => {
                     <div className='w-full flex flex-col md:flex-row items-center justify-between gap-5 md:gap-0'>
                         <div className='flex items-center gap-4'>
                             <FontAwesomeIcon icon={faShield} className='text-4xl' />
-                            <p className='md:w-120 w-50'>Empresas asesoradas por FST NEGOCIOS han accedido a fondos para innovacion, digitalizacion y crecimiento.</p>
+                            <p className='md:w-120 w-40'>Empresas asesoradas por FST NEGOCIOS han accedido a fondos para innovacion, digitalizacion y crecimiento.</p>
                         </div>
-                        <a href='https://www.youtube.com/playlist?list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44' target='_blank' className="flex flex-col md:flex-row items-center p-2 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-red-500 transition-all group cursor-pointer md:w-70">
+                        <a href='https://www.youtube.com/playlist?list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44' target='_blank' className="flex flex-col md:flex-row items-center p-2 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-red-500 transition-all group cursor-pointer md:w-70 w-55">
                             <div className="size-10 rounded-xl flex items-center justify-center bg-red-600 text-white text-xl mr-4 group-hover:scale-110 transition-transform">
-                                {/* Aquí va el ícono de YouTube */}
                                 <FontAwesomeIcon icon={faYoutube} />
                             </div>
                             <div>
