@@ -6,13 +6,22 @@ import {
   faLightbulb, 
   faGlobe, 
   faShieldHalved, 
-  faCircle 
+  faCircle,
+  faStar
 } from '@fortawesome/free-solid-svg-icons'
 
 const Buttons = ({data}) => {
-    const { theme } = data
+    const { theme, isMostRequested } = data
   return (
-    <div className="max-w-112.5 shrink-0 space-y-4 font-sans text-sm">
+    <div className="max-w-112.5 relative shrink-0 space-y-4 font-sans text-sm">
+
+      {isMostRequested && (
+        <div className="absolute -top-3.5 left-35 z-10 flex items-center gap-1.5 bg-linear-to-r from-emerald-700 to-emerald-600 text-white font-semibold px-4 py-1.5 rounded-xl shadow-[0_0_15px_rgba(16,185,129,0.4)] border border-emerald-500/30 text-xs">
+          <FontAwesomeIcon icon={faStar} className="text-amber-300 text-[10px]" />
+          <span>Más solicitado</span>
+        </div>
+      )}
+
       {/* Tarjeta Blanca */}
       <div className={`bg-white min-h-85 rounded-3xl p-8 border border-neutral-100 shadow-lg flex flex-col justify-between ${theme.borderTop}`}>
         

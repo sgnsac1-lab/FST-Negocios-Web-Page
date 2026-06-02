@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faTiktok, faYoutube, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
-import logo from "../Assets/Logo.jpeg"
+import logo from "../Assets/Logo.png"
 import LibroReclamaciones from "../Assets/LibroReclamaciones.webp"
 
 const Footer = () => {
@@ -12,7 +12,7 @@ const Footer = () => {
         <section className="w-full grid md:grid-cols-4 gap-5 md:gap-0 px-5 md:px-25 py-5 items-center">
 
             <div className="flex flex-col items-center md:items-start gap-2">
-                    <img src={logo} className='size-35' />
+                    <img src={logo} className='w-60' />
                 <p className="md:w-70 w-60 text-slate-500 text-center md:text-left">Expertos en consultoria estrategica, gestion de fondos estatales y transformacion digital para impulsar el crecimiento de tu empresa.</p>
             </div>
 

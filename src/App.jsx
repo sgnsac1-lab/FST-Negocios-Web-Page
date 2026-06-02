@@ -24,11 +24,21 @@ const App = () => {
           {/* RUTA DE LA LANDING PAGE */}
           <Route path="/" element={
             <main className="w-full h-full">
-              <Hero />
-              <ButtonsActtion />
-              <Services />
-              <Acreditattions />
-              <SuccesStorys />
+              <section id='inicio'>
+                <Hero />
+              </section>
+              <section id='contacto'>
+                <ButtonsActtion />
+              </section>
+              <section id='servicios'>
+                <Services />
+              </section>
+              <section id='acreditaciones'>
+                <Acreditattions />
+              </section>
+              <section id='casos-exito'>
+                <SuccesStorys />
+              </section>
             </main>
           } />
 
@@ -36,9 +46,10 @@ const App = () => {
           <Route path="/libro-de-reclamaciones" element={<FormBookReclamation />} />
         </Routes>
 
-        <Footer />
+        <section id='recursos'>
+          <Footer />
+        </section>
         <ButtonWhatsApp />
-        <ChatBotFST />
       </div>
     </Router>
 

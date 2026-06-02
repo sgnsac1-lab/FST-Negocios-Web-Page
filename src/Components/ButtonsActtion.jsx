@@ -6,7 +6,9 @@ import {
   faLightbulb, 
   faGlobe, 
   faShieldHalved, 
-  faCircle
+  faCircle,
+  faUsers,
+  faShield
 } from '@fortawesome/free-solid-svg-icons'
 import Button from './Buttons'
 
@@ -14,6 +16,7 @@ const ButtonsActtion = () => {
 
     const cardsData = [
         {
+            isMostRequested: true,
             title: "Subsidios, bonos y recursos no reembolsables",
             description: "Ideal si buscas acceder a oportunidades, beneficios del Estado o financiamiento para tu negocio.",
             tag: "Estado peruano",
@@ -68,29 +71,48 @@ const ButtonsActtion = () => {
     ]
 
     return (
-        <section className="w-full">
+        <section className="w-full bg-slate-900 py-2">
 
-            <div className='flex flex-col md:flex-row gap-4 justify-center items-center p-4 md:mt-40 mt-30'>
+            <div className='w-full flex justify-center items-center mb-10'>
+                <div className='md:w-300 w-80 border p-2 rounded-lg flex flex-col md:flex-row items-center gap-2 text-white text-lg md:divide-x divide-y divide-gray-600 h-90 md:h-fit'>
+                    <div className='flex items-center gap-4'>
+                        <FontAwesomeIcon icon={faUsers} className='text-4xl' />
+                        <div className='flex flex-col'>
+                            <p className='font-bold'>+250</p>
+                            <p>Empresas asesoradas</p>
+                        </div>
+                    </div>
+                    <div className='w-full flex flex-col md:flex-row items-center justify-between gap-5 md:gap-0'>
+                        <div className='flex items-center gap-4'>
+                            <FontAwesomeIcon icon={faShield} className='text-4xl' />
+                            <p className='md:w-120 w-50'>Empresas asesoradas por FST NEGOCIOS han accedido a fondos para innovacion, digitalizacion y crecimiento.</p>
+                        </div>
+                        <a href='https://www.youtube.com/playlist?list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44' target='_blank' className="flex flex-col md:flex-row items-center p-2 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-red-500 transition-all group cursor-pointer md:w-70">
+                            <div className="size-10 rounded-xl flex items-center justify-center bg-red-600 text-white text-xl mr-4 group-hover:scale-110 transition-transform">
+                                {/* Aquí va el ícono de YouTube */}
+                                <FontAwesomeIcon icon={faYoutube} />
+                            </div>
+                            <div>
+                                <p className="font-bold text-center md:text-left">Ver Casos de Éxito</p>
+                            </div>
+                            <FontAwesomeIcon 
+                                icon={faChevronRight} 
+                                className="text-gray-300 group-hover:translate-x-1 transition-all group-hover:text-red-500 text-center"
+                            />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div className='text-white flex flex-col justify-center items-center text-center gap-2'>
+                <h1 className='font-bold text-3xl md:text-5xl'>Elige tu <span className='text-blue-500'>canal de atencion</span></h1>
+                <p>Te conectamos por WhatsApp según el tipo de asesoría que necesitas.</p>
+            </div>
+
+            <div className='flex flex-col md:flex-row gap-4 justify-center items-center p-4 mt-10'>
                 {cardsData.map((card, index) => (
                     <Button key={index} data={card} />
                 ))}
-            </div>
-
-            <div className='mt-7 flex justify-center'>
-                <a href='https://www.youtube.com/playlist?list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44' target='_blank' className="flex flex-col md:flex-row items-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-red-500 transition-all group cursor-pointer md:w-120 w-70">
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-red-600 text-white text-2xl mr-4 group-hover:scale-110 transition-transform">
-                        {/* Aquí va el ícono de YouTube */}
-                        <FontAwesomeIcon icon={faYoutube} />
-                    </div>
-                    <div>
-                        <p className="font-bold text-gray-800 text-center md:text-left">Casos de Éxito</p>
-                        <p className="text-sm text-gray-500 text-center md:text-left">Mira cómo hemos ayudado a otros</p>
-                    </div>
-                    <FontAwesomeIcon 
-                        icon={faChevronRight} 
-                        className="text-gray-300 group-hover:translate-x-1 transition-all md:ml-30 group-hover:text-red-500 text-center"
-                    />
-                </a>
             </div>
  
         </section>
