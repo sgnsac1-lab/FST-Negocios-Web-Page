@@ -1,235 +1,302 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMedal, faRibbon, faTrophy, faAward, faStar } from '@fortawesome/free-solid-svg-icons'
-import { faFilePdf, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
-import iso9001 from '../Assets/ISO-9001.pdf'
-import iso14001 from '../Assets/Iso-14001.pdf'
-import iso45001 from '../Assets/ISO-45001.pdf'
-import InfoCard from "./InfoCard"
+import { useState, useEffect, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMedal,
+  faRibbon,
+  faTrophy,
+  faAward,
+  faStar,
+  faShieldHalved,
+  faChevronLeft,
+  faChevronRight,
+  faArrowRight,
+  faDownload,
+} from "@fortawesome/free-solid-svg-icons";
+import { faFilePdf, faTimesCircle } from "@fortawesome/free-regular-svg-icons";
+
+import iso9001 from "../Assets/ISO-9001.pdf";
+import iso14001 from "../Assets/Iso-14001.pdf";
+import iso45001 from "../Assets/ISO-45001.pdf";
+import InfoCard from "./InfoCard";
 
 const Acreditattions = () => {
+  const [selectedPdf, setSelectedPdf] = useState(null);
 
-    const [selectedPdf, setSelectedPdf] = useState(null)
+  const cardsData = [
+    {
+      icon: faMedal,
+      verifierName: "Ministerio de la Producción",
+      badgeTitle: "ACREDITACIÓN OFICIAL",
+      mainTitle: "Centro de Transformación Digital",
+      description:
+        "Comprometidos con los estándares del Ministerio de la Producción para el desarrollo empresarial y la transformación digital.",
+      type: "link",
+      url: "https://www.gob.pe/institucion/produce/normas-legales/7490544-00011-2025-produce-dgitdf",
+      actionText: "Ver perfil oficial",
+    },
+    {
+      icon: faMedal,
+      verifierName: "PCM",
+      badgeTitle: "ACREDITACIÓN",
+      mainTitle: "Red de Aceleradoras de la PCM",
+      description:
+        "Comprometidos con los estándares más altos de la PCM para el desarrollo empresarial y la innovación.",
+      type: "link",
+      url: "https://www.gob.pe/29832-fst-negocios",
+      actionText: "Ver perfil oficial",
+      highlighted: true,
+    },
+    {
+      icon: faFilePdf,
+      verifierName: "ISO",
+      badgeTitle: "CERTIFICACIÓN DE CALIDAD",
+      mainTitle: "Norma ISO 9001:2015",
+      description:
+        "Certificación internacional que garantiza productos y servicios alineados con la normativa vigente y las necesidades del cliente.",
+      type: "pdf",
+      file: iso9001,
+      actionText: "Ver PDF",
+    },
+    {
+      icon: faFilePdf,
+      verifierName: "ISO",
+      badgeTitle: "CERTIFICACIÓN AMBIENTAL",
+      mainTitle: "Norma ISO 14001:2015",
+      description:
+        "Certificación en transformación digital sostenible que garantiza procesos automatizados, responsables y en mejora continua.",
+      type: "pdf",
+      file: iso14001,
+      actionText: "Ver PDF",
+    },
+    {
+      icon: faShieldHalved,
+      verifierName: "ISO",
+      badgeTitle: "CERTIFICACIÓN DE SEGURIDAD Y SALUD",
+      mainTitle: "Norma ISO 45001:2018",
+      description:
+        "Estándar internacional que promueve ambientes de trabajo seguros y saludables, protegiendo a las personas y fortaleciendo el desempeño.",
+      type: "pdf",
+      file: iso45001,
+      actionText: "Ver PDF",
+    },
+  ];
 
-    const cardsData = [
-        {
-            icon: faMedal,
-            verifierName: "Ministerio de la Producción",
-            badgeTitle: "ACREDITACION ADHESION",
-            mainTitle: "Centro de Transformación Digital",
-            description: "Comprometidos con los estandares más altos del Ministerio de la Produccion para el desarrollo empresarial.",
-            type: 'link',
-            url: "https://www.gob.pe/institucion/produce/normas-legales/7490544-00011-2025-produce-dgitdf"
-        },
-        {
-            icon: faMedal,
-            verifierName: "PCM",
-            badgeTitle: "ACREDITACION RED DE ACELERADORAS",
-            mainTitle: "Red de Aceleradoras de la PCM",
-            description: "Comprometidos con los estandares mas altos de la PCM para el desarrollo empresarial",
-            type: 'link',
-            url: "https://www.gob.pe/29832-fst-negocios"
-        },
-        {
-            icon: faFilePdf,
-            verifierName: "ISO",
-            badgeTitle: "CERTIFICACIÓN DE CALIDAD",
-            mainTitle: "Norma ISO 9001:2015",
-            description: "Certificación internacional que garantiza productos y servicios alineados con la normativa vigente y las necesidades del cliente.",
-            type: 'pdf',
-            file: iso9001
-        },
-        {
-            icon: faFilePdf,
-            verifierName: "ISO",
-            badgeTitle: "CERTIFICACIÓN DE CALIDAD",
-            mainTitle: "Norma ISO 14001:2015",
-            description: "Certificación en transformación digital sostenible que garantiza procesos automatizados, responsables y en mejora continua.",
-            type: 'pdf',
-            file: iso14001
-        },
-        {
-            icon: faFilePdf,
-            verifierName: "ISO",
-            badgeTitle: "CERTIFICACIÓN DE CALIDAD",
-            mainTitle: "Norma ISO 45001:2018",
-            description: "Estándar global que certifica nuestro Sistema de Gestión de Seguridad y Salud en el Trabajo.",
-            type: 'pdf',
-            file: iso45001
-        }
-    ];
+  const infiniteCards = [...cardsData, ...cardsData];
 
-    // 2. DUPLICAMOS LOS DATOS para el efecto infinito
-    const infiniteCards = [...cardsData, ...cardsData]
+  const scrollRef = useRef(null);
+  const positionRef = useRef(0);
+  const requestRef = useRef(null);
+  const currentSpeed = useRef(0.8);
+  const [targetSpeed, setTargetSpeed] = useState(0.8);
 
-    const scrollRef = useRef(null);
-    const positionRef = useRef(0);
-    const requestRef = useRef(null);
-    
-    // targetSpeed es a la velocidad que QUEREMOS ir
-    const [targetSpeed, setTargetSpeed] = useState(1); 
-    // currentSpeed es la velocidad real actual (para el efecto de aceleración suave)
-    const currentSpeed = useRef(1);
+  const moveLeft = () => {
+    positionRef.current += 324;
+  };
 
-    useEffect(() => {
-    // Definimos la función ADENTRO para que useEffect tenga acceso total
+  const moveRight = () => {
+    positionRef.current -= 324;
+  };
+
+  useEffect(() => {
     const animate = () => {
-        if (!scrollRef.current) return;
+      if (!scrollRef.current) return;
 
-        // Aceleración suave
-        currentSpeed.current += (targetSpeed - currentSpeed.current) * 0.05;
-        positionRef.current -= currentSpeed.current;
+      currentSpeed.current += (targetSpeed - currentSpeed.current) * 0.05;
+      positionRef.current -= currentSpeed.current;
 
-        const halfWidth = scrollRef.current.scrollWidth / 2;
-        if (Math.abs(positionRef.current) >= halfWidth) {
-            positionRef.current = 0;
-        }
+      const halfWidth = scrollRef.current.scrollWidth / 2;
 
-        scrollRef.current.style.transform = `translate3d(${positionRef.current}px, 0, 0)`;
-        
-        requestRef.current = requestAnimationFrame(animate);
+      if (Math.abs(positionRef.current) >= halfWidth) {
+        positionRef.current += halfWidth;
+      }
+
+      if (positionRef.current > 0) {
+        positionRef.current -= halfWidth;
+      }
+
+      scrollRef.current.style.transform = `translate3d(${positionRef.current}px, 0, 0)`;
+
+      requestRef.current = requestAnimationFrame(animate);
     };
 
-    // Iniciamos la animación
     requestRef.current = requestAnimationFrame(animate);
-    
-    // Limpiamos al desmontar o cambiar velocidad
+
     return () => {
-        if (requestRef.current) {
-            cancelAnimationFrame(requestRef.current);
-        }
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
     };
-    }, [targetSpeed]);
-    
-    return(
-        <section className="relative flex flex-col justify-center items-center w-full overflow-x-hidden bg-slate-900 gap-8 pt-5 mt-30">
+  }, [targetSpeed]);
 
-                <div>
-                    {/* Trofeo */}
-                    <div className="absolute top-20 left-[10%] text-yellow-500/20 text-6xl rotate-12 animate-bounce transition-all duration-1000" style={{ animationDuration: '3s' }}>
-                        <FontAwesomeIcon icon={faTrophy} />
-                    </div>
+  return (
+    <section
+      id="acreditaciones"
+        className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-[#061a3a] px-4 pt-20 pb-8 md:pt-28 md:pb-15"
+    >
+      {/* FONDO CORPORATIVO */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.42),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(37,99,235,0.35),transparent_30%),linear-gradient(135deg,#020617,#061a3a_45%,#020617)]" />
 
-                    {/* Premio / Award */}
-                    <div className="absolute bottom-20 right-[15%] text-blue-400/20 text-5xl -rotate-12 animate-bounce transition-all duration-1000" style={{ animationDuration: '4s' }}>
-                        <FontAwesomeIcon icon={faAward} />
-                    </div>
+      {/* FORMAS DE FONDO */}
+      <div className="absolute -left-48 top-[-80px] h-[520px] w-[520px] rounded-full border border-blue-400/10" />
+      <div className="absolute -left-36 top-[-40px] h-[400px] w-[400px] rounded-full border border-blue-400/10" />
+      <div className="absolute -right-40 bottom-10 h-[420px] w-[420px] rounded-full border border-blue-400/10" />
+      <div className="absolute -right-28 bottom-24 h-[300px] w-[300px] rounded-full border border-blue-400/10" />
 
-                    {/* Estrella */}
-                    <div className="absolute top-1/2 right-[5%] text-yellow-300/10 text-4xl animate-pulse">
-                        <FontAwesomeIcon icon={faStar} />
-                    </div>
-                </div>
-
-            <span className="inline-block py-1 px-4 rounded-full bg-blue-500/10 text-blue-400 font-bold tracking-widest text-xs uppercase border border-blue-500/20 mb-4">
-                Excelencia Certificada
-            </span>
-            <h1 className="font-bold md:text-5xl text-center text-3xl w-50 md:w-full text-white">Nuestras <span className='text-blue-500'>Acreditaciones</span> y <span className='text-blue-500'>Certificaciones</span> Oficiales</h1>
-            <p className="md:w-130 w-50 text-center text-slate-400">Respaldo institucional que garantiza la calidad y seguridad de nuestros servicios de consultoria estrategica.</p>
-
-            
-            {/* Contenedor del Carrusel Infinito */}
-            <div className="relative w-full overflow-hidden">
-                {/* Gradientes laterales para suavizar la entrada y salida */}
-                <div className="absolute inset-y-0 left-0 md:w-64 bg-linear-to-r from-slate-900 to-transparent z-20 pointer-events-none hidden md:block"></div>
-                <div className="absolute inset-y-0 right-0 md:w-64 bg-linear-to-l from-slate-900 to-transparent z-20 pointer-events-none hidden md:block"></div>
-
-                {/* ZONAS DE INTERACCIÓN */}
-                {/* ZONA DE ACELERACIÓN (Derecha) */}
-                <div 
-                    className="absolute inset-y-0 right-0 w-20 z-50 cursor-pointer"
-                    onMouseEnter={() => setTargetSpeed(8)} // ¡Súper rápido!
-                    onMouseLeave={() => setTargetSpeed(1)} // Vuelve a la normalidad
-                />
-
-                {/* Track de animación */}
-                <div 
-                ref={scrollRef}
-                className="flex gap-7 py-10"
-                style={{ width: 'max-content', willChange: 'transform' }}>
-
-                {/* Tarjetas */}
-                    {infiniteCards.map((card, index) => (
-                        <InfoCard 
-                            key={index} // Importante para React
-                            icon={card.icon}
-                            verifierName={card.verifierName}
-                            badgeTitle={card.badgeTitle}
-                            mainTitle={card.mainTitle}
-                            description={card.description}
-                            footerAction={
-                                card.type === 'link' ? (
-                                    <a 
-                                        href={card.url}
-                                        target='_blank'
-                                        rel="noreferrer"
-                                        className="inline-flex items-center gap-3 bg-white/5 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 w-full justify-center border border-white/10 hover:border-blue-500 shadow-lg group/link"
-                                    >
-                                        <span>Ver perfil oficial</span>
-                                        <i className="fas fa-arrow-right text-xs transition-transform group-hover/link:translate-x-1"></i>
-                                    </a>
-                                ) : (
-                                    <button 
-                                        onClick={() => setSelectedPdf(card.file)}
-                                        className="inline-flex items-center gap-3 bg-white/5 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 w-full justify-center border border-white/10 hover:border-blue-500 shadow-lg group/link"
-                                    >
-                                        <i className="fas fa-eye text-xs"></i>
-                                        <span>Ver PDF</span>
-                                    </button>
-                                )
-                            }
-                        />
-                    ))}
-
-                </div>
-            </div>
-
-
-            {/* Estilos locales para la animación infinita */}
-            <style dangerouslySetInnerHTML={{ __html: `
-                @keyframes scroll-acreditaciones {
-                from { transform: translateX(0); }
-                to { transform: translateX(-50%); }
-                }
-                .animate-scroll-acreditaciones {
-                display: flex;
-                width: max-content; /* Esto está bien, pero el padre debe ser overflow-hidden */
-                animation: scroll-acreditaciones 70s linear infinite ;
-                }
-                /* Agregamos esto para asegurar que no haya scroll lateral en el body */
-                :global(body) {
-                overflow-x: hidden;
-                position: relative;
-                width: 100%;
-                }
-            `}} />
-
-      <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white text-2xl mr-4 group-hover:scale-110 transition-transform">
-                <FontAwesomeIcon icon={faRibbon} />
+      {/* PUNTOS DECORATIVOS */}
+      <div className="absolute right-[8%] top-[18%] hidden grid-cols-6 gap-3 opacity-25 md:grid">
+        {Array.from({ length: 36 }).map((_, index) => (
+          <span key={index} className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+        ))}
       </div>
 
-      {/* 3. El MODAL (Solo se renderiza si showModal es true) */}
+      <div className="absolute left-[2%] bottom-[22%] hidden grid-cols-5 gap-3 opacity-20 md:grid">
+        {Array.from({ length: 25 }).map((_, index) => (
+          <span key={index} className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+        ))}
+      </div>
+
+      {/* ÍCONOS FLOTANTES */}
+      <FontAwesomeIcon
+        icon={faTrophy}
+        className="absolute left-[9%] top-[22%] hidden text-6xl text-yellow-400/10 animate-bounce md:block"
+        style={{ animationDuration: "3.5s" }}
+      />
+
+      <FontAwesomeIcon
+        icon={faAward}
+        className="absolute bottom-[16%] right-[12%] hidden text-6xl text-blue-400/10 animate-bounce md:block"
+        style={{ animationDuration: "4.5s" }}
+      />
+
+      <FontAwesomeIcon
+        icon={faStar}
+        className="absolute right-[5%] top-[48%] hidden text-4xl text-white/10 animate-pulse md:block"
+      />
+
+      <div className="relative z-10 mx-auto flex w-full max-w-[1500px] flex-col items-center">
+        {/* TÍTULO */}
+        <div className="mx-auto max-w-5xl text-center">
+          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-blue-400/40 bg-blue-600/10 px-6 py-2 text-xs font-black uppercase tracking-[0.22em] text-blue-300 shadow-[0_0_35px_rgba(37,99,235,0.25)] backdrop-blur-xl">
+            <FontAwesomeIcon icon={faShieldHalved} />
+            Excelencia certificada
+          </div>
+
+          <h1 className="text-4xl font-black leading-tight text-white md:text-6xl">
+            Nuestras{" "}
+            <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+              Acreditaciones
+            </span>{" "}
+            y Certificaciones Oficiales
+          </h1>
+
+          <div className="mx-auto mt-6 h-1 w-28 rounded-full bg-blue-500 shadow-[0_0_22px_rgba(59,130,246,0.95)]" />
+
+          <p className="mx-auto mt-7 max-w-3xl text-base leading-relaxed text-white/70 md:text-xl">
+            Respaldo institucional que garantiza la calidad, seguridad y
+            confianza en nuestros servicios de consultoría estratégica.
+          </p>
+        </div>
+
+        {/* CARRUSEL INFINITO - SOLO 4 VISIBLE EN DESKTOP */}
+        <div className="relative mt-14 w-full">
+          <div className="relative mx-auto overflow-hidden max-w-[300px] md:max-w-[624px] lg:max-w-[948px] xl:max-w-[1272px]">
+            {/* Gradientes laterales */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-30 hidden w-24 bg-gradient-to-r from-[#061a3a] to-transparent md:block" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-30 hidden w-24 bg-gradient-to-l from-[#061a3a] to-transparent md:block" />
+
+            {/* Zona para acelerar */}
+            <div
+              className="absolute inset-y-0 right-0 z-40 hidden w-20 cursor-pointer md:block"
+              onMouseEnter={() => setTargetSpeed(4)}
+              onMouseLeave={() => setTargetSpeed(0.8)}
+            />
+
+            <div
+              ref={scrollRef}
+              className="flex gap-6 py-8"
+              style={{ width: "max-content", willChange: "transform" }}
+            >
+              {infiniteCards.map((card, index) => (
+                <InfoCard
+                  key={index}
+                  icon={card.icon}
+                  verifierName={card.verifierName}
+                  badgeTitle={card.badgeTitle}
+                  mainTitle={card.mainTitle}
+                  description={card.description}
+                  highlighted={card.highlighted}
+                  footerAction={
+                    card.type === "link" ? (
+                      <a
+                        href={card.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group/link inline-flex w-full items-center justify-center gap-3 rounded-xl bg-blue-600 px-5 py-3.5 text-sm font-black text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-blue-500"
+                      >
+                        <span>{card.actionText}</span>
+                        <FontAwesomeIcon
+                          icon={faArrowRight}
+                          className="text-xs transition-transform duration-300 group-hover/link:translate-x-1"
+                        />
+                      </a>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedPdf(card.file)}
+                        className="group/link inline-flex w-full items-center justify-center gap-3 rounded-xl bg-blue-600 px-5 py-3.5 text-sm font-black text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-blue-500"
+                      >
+                        <span>{card.actionText}</span>
+                        <FontAwesomeIcon icon={faDownload} className="text-xs" />
+                      </button>
+                    )
+                  }
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* CONTROLES */}
+        <div className="mt-4 flex items-center gap-5">
+          <button
+            type="button"
+            onClick={moveLeft}
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 backdrop-blur-xl transition-all duration-300 hover:border-blue-400 hover:bg-blue-600 hover:text-white"
+          >
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+
+          <button
+            type="button"
+            onClick={moveRight}
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-blue-400 bg-blue-600/10 text-white backdrop-blur-xl transition-all duration-300 hover:bg-blue-600"
+          >
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
+        </div>
+      </div>
+
+      {/* MODAL PDF */}
       {selectedPdf && (
-        <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-          <div className="relative bg-white w-full max-w-5xl h-[90vh] rounded-2xl overflow-hidden flex flex-col">
-            
-            {/* Cabecera del Modal */}
-            <div className="flex justify-between items-center p-4 border-b">
-              <h3 className="font-bold text-slate-800">Vista Previa:</h3>
-              <button 
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
+          <div className="relative flex h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+            <div className="flex items-center justify-between border-b p-4">
+              <h3 className="font-bold text-slate-800">Vista previa</h3>
+
+              <button
+                type="button"
                 onClick={() => setSelectedPdf(null)}
-                className="text-slate-500 hover:text-red-500 transition-colors"
+                className="text-slate-500 transition-colors hover:text-red-500"
               >
                 <FontAwesomeIcon icon={faTimesCircle} size="lg" />
               </button>
             </div>
 
-            {/* Cuerpo del Modal con el iframe */}
             <div className="flex grow">
-              <iframe 
-                src={`${selectedPdf}#toolbar=0`} 
-                width="100%" 
-                height="100%" 
+              <iframe
+                src={`${selectedPdf}#toolbar=0`}
+                width="100%"
+                height="100%"
                 style={{ border: "none" }}
                 title="PDF Preview"
               />
@@ -237,9 +304,8 @@ const Acreditattions = () => {
           </div>
         </div>
       )}
+    </section>
+  );
+};
 
-        </section>
-    )
-}
-
-export default Acreditattions
+export default Acreditattions;

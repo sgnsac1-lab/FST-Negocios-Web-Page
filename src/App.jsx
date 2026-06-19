@@ -8,6 +8,8 @@ import Hero from "./Components/Hero"
 import Navbar from "./Components/Navbar"
 import Services from "./Components/Services"
 import SuccesStorys from "./Components/SuccesStorys"
+import EventosAsistidos from "./Components/EventosAsistidos";
+import PrototiposImplementaciones from "./Components/PrototiposImplementaciones";
 
 import FormBookReclamation  from './BookReclamations/FormBookReclamation'
 
@@ -39,6 +41,13 @@ const App = () => {
               <section id='casos-exito'>
                 <SuccesStorys />
               </section>
+              <section id='eventos-asistidos'>
+                <EventosAsistidos />
+              </section>
+              <section id='trabajos'>
+                <PrototiposImplementaciones />
+              </section>
+              
             </main>
           } />
 

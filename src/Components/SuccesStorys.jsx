@@ -1,121 +1,272 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faBuilding,
+  faCheck,
+  faCirclePlay,
+  faDollarSign,
+  faStar,
+  faTrophy,
+  faUsers,
+} from "@fortawesome/free-solid-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 const SUCCESS_VIDEOS = [
   {
-    id: '1',
-    title: 'TESTIMONIO GANADOR DE CONCURSO PROINNOVATE MIPYMES DIGITALES',
-    thumbnail: 'https://img.youtube.com/vi/fsj2bvie89s/maxresdefault.jpg',
-    url: 'https://www.youtube.com/watch?v=fsj2bvie89s&list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44&index=2'
+    id: "1",
+    title: "Testimonio de Ganador de Concurso ProInnovate",
+    description:
+      "Accedieron a fondos no reembolsables que impulsaron su crecimiento y competitividad.",
+    thumbnail: "https://img.youtube.com/vi/fsj2bvie89s/maxresdefault.jpg",
+    url: "https://www.youtube.com/watch?v=fsj2bvie89s&list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44&index=2",
   },
   {
-    id: '2',
-    title: 'TESTIMONIO GANADORA DE CONCURSO TURISMO EMPRENDE',
-    thumbnail: 'https://img.youtube.com/vi/e-fyAOT7c1Q/maxresdefault.jpg',
-    url: 'https://www.youtube.com/watch?v=e-fyAOT7c1Q&list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44&index=3'
+    id: "2",
+    title: "Ganadora de Concurso Turismo Emprende",
+    description:
+      "Financiamiento que hizo posible innovar, crecer y generar más impacto.",
+    thumbnail: "https://img.youtube.com/vi/e-fyAOT7c1Q/maxresdefault.jpg",
+    url: "https://www.youtube.com/watch?v=e-fyAOT7c1Q&list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44&index=3",
   },
   {
-    id: '3',
-    title: 'Testimonio Real: Empresa Gana S/100,000 del Estado Peruano | Caso Éxito Innovación Empresarial',
-    thumbnail: 'https://img.youtube.com/vi/nMmJJ-MbYso/maxresdefault.jpg',
-    url: 'https://www.youtube.com/watch?v=nMmJJ-MbYso&list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44&index=16'
+    id: "3",
+    title: "Empresa gana S/100,000 en concurso público",
+    description:
+      "Fondos obtenidos que aceleraron su proyecto y fortalecieron su competitividad.",
+    thumbnail: "https://img.youtube.com/vi/nMmJJ-MbYso/maxresdefault.jpg",
+    url: "https://www.youtube.com/watch?v=nMmJJ-MbYso&list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44&index=16",
   },
   {
-    id: '4',
-    title: 'Testimonio Real: Empresa Gana S/100,000 del Estado Peruano | Caso Éxito Innovación Empresarial',
-    thumbnail: 'https://img.youtube.com/vi/aD2DsojfNxQ/maxresdefault.jpg',
-    url: 'https://www.youtube.com/watch?v=aD2DsojfNxQ&list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44&index=8'
-  }
+    id: "4",
+    title: "Caso real de innovación empresarial",
+    description:
+      "Una historia de éxito que demuestra cómo una buena postulación puede transformar un negocio.",
+    thumbnail: "https://img.youtube.com/vi/aD2DsojfNxQ/maxresdefault.jpg",
+    url: "https://www.youtube.com/watch?v=aD2DsojfNxQ&list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44&index=8",
+  },
 ];
 
-
 const SuccesStorys = () => {
+  const displayVideos = [
+    ...SUCCESS_VIDEOS,
+    ...SUCCESS_VIDEOS,
+    ...SUCCESS_VIDEOS,
+    ...SUCCESS_VIDEOS,
+  ];
 
-const displayVideos = [...SUCCESS_VIDEOS, ...SUCCESS_VIDEOS, ...SUCCESS_VIDEOS, ...SUCCESS_VIDEOS];
+  return (
+    <section
+      id="casos-exito"
+      className="relative w-full overflow-hidden bg-[#061a3a] px-4 py-20 text-white md:py-24"
+    >
+      {/* FONDO CORPORATIVO */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.38),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(37,99,235,0.32),transparent_28%),linear-gradient(135deg,#020617,#061a3a_45%,#020617)]" />
 
-    return(
-        <section className="py-24 bg-slate-900 text-white overflow-x-hidden w-full relative">
-      <div className="max-w-6xl mx-auto text-center mb-16 relative z-10">
-        <h2 className="text-4xl md:text-5xl font-black mb-4 italic tracking-tight">
-          Resultados que <span className="text-blue-500">inspiran</span>
-        </h2>
-        <p className="text-slate-400 w-60 md:w-160 mx-auto font-medium">
-          Conoce de primera mano cómo hemos impulsado a cientos de empresas a alcanzar el siguiente nivel con casos reales y testimonios.
-        </p>
+      {/* FORMAS DE FONDO */}
+      <div className="absolute -left-40 top-20 h-[420px] w-[420px] rounded-full border border-blue-400/10" />
+      <div className="absolute -left-24 top-36 h-[300px] w-[300px] rounded-full border border-blue-400/10" />
+      <div className="absolute -right-32 top-10 h-[420px] w-[420px] rounded-full border border-blue-400/10" />
+      <div className="absolute -right-16 top-28 h-[300px] w-[300px] rounded-full border border-blue-400/10" />
+
+      {/* PUNTOS DECORATIVOS */}
+      <div className="absolute left-[2%] top-[12%] hidden grid-cols-5 gap-3 opacity-20 md:grid">
+        {Array.from({ length: 25 }).map((_, index) => (
+          <span key={index} className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+        ))}
       </div>
 
-      {/* Contenedor del Carrusel Infinito */}
-      <div className="relative w-full overflow-hidden">
-        {/* Gradientes laterales para suavizar la entrada y salida */}
-        <div className="absolute inset-y-0 left-0 md:w-64 bg-linear-to-r from-slate-900 to-transparent z-20 pointer-events-none hidden md:block"></div>
-        <div className="absolute inset-y-0 right-0 md:w-64 bg-linear-to-l from-slate-900 to-transparent z-20 pointer-events-none hidden md:block"></div>
+      <div className="absolute right-[8%] bottom-[20%] hidden grid-cols-6 gap-3 opacity-20 md:grid">
+        {Array.from({ length: 30 }).map((_, index) => (
+          <span key={index} className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+        ))}
+      </div>
 
-        {/* Track de animación */}
-        <div className="flex animate-infinite-scroll hover:pause-scroll whitespace-nowrap py-10">
-          {displayVideos.map((video, index) => (
-            <div 
-              key={`${video.id}-${index}`} 
-              className="shrink-0 px-4 w-70 md:w-125"
-            >
-              <div className="relative group rounded-4xl overflow-hidden shadow-2xl bg-slate-800 border border-white/5 transition-all duration-500 hover:scale-[1.02] hover:border-blue-500/30">
-                <img 
-                  src={video.thumbnail} 
-                  alt={video.title} 
-                  className="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
-                />
-                
-                {/* Overlay de información y reproducción */}
-                <a href={video.url} target="_blank">
-                <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/20 to-transparent flex flex-col items-center justify-center p-8">
-                  
-                  <link href={video.url}></link>
-                  <div className="w-full text-left mt-auto">
-                    <span className="inline-block py-1 px-3 rounded-lg bg-blue-600/20 text-blue-400 text-[10px] font-black uppercase tracking-widest mb-2 border border-blue-500/20">
-                      CASO DE ÉXITO
-                    </span>
-                    <h3 className="text-white text-lg md:text-xl font-bold leading-tight line-clamp-2">
-                      {video.title}
-                    </h3>
-                  </div>
-                </div>
-                </a>
-              </div>
+      {/* LUCES */}
+      <div className="absolute left-[8%] top-[8%] h-3 w-3 rounded-full bg-blue-400 blur-[2px] animate-pulse" />
+      <div className="absolute right-[12%] top-[16%] h-3 w-3 rounded-full bg-blue-400 blur-[2px] animate-pulse" />
+
+      <div className="relative z-10 mx-auto max-w-[1280px]">
+        {/* TÍTULO */}
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-400/25 bg-white/[0.04] px-5 py-2 text-xs font-black uppercase tracking-[0.22em] text-blue-300 backdrop-blur-xl">
+            <FontAwesomeIcon icon={faStar} />
+            Historias reales de éxito
+          </div>
+
+          <h2 className="text-4xl font-black leading-tight md:text-6xl">
+            Resultados que{" "}
+            <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+              inspiran
+            </span>
+          </h2>
+
+          <div className="mx-auto mt-4 h-1.5 w-20 rounded-full bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.85)]" />
+
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-white/70 md:text-lg">
+            Conoce historias reales de empresas y emprendedores que, con el
+            apoyo de FST NEGOCIOS, accedieron a fondos públicos y transformaron
+            sus ideas en resultados.
+          </p>
+        </div>
+
+        {/* MÉTRICAS */}
+        <div className="mx-auto mt-8 grid max-w-[780px] gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3 backdrop-blur-xl md:grid-cols-3 md:divide-x md:divide-white/10">
+          <div className="flex items-center justify-center gap-4 px-4 py-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-blue-400/30 bg-blue-600/10 text-blue-400">
+              <FontAwesomeIcon icon={faUsers} />
             </div>
-          ))}
+            <div>
+              <p className="text-2xl font-black">250+</p>
+              <p className="text-xs text-white/65">Historias de éxito</p>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center gap-4 px-4 py-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-blue-400/30 bg-blue-600/10 text-blue-400">
+              <FontAwesomeIcon icon={faDollarSign} />
+            </div>
+            <div>
+              <p className="text-2xl font-black">S/ 25M+</p>
+              <p className="text-xs text-white/65">Fondos obtenidos</p>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center gap-4 px-4 py-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-blue-400/30 bg-blue-600/10 text-blue-400">
+              <FontAwesomeIcon icon={faBuilding} />
+            </div>
+            <div>
+              <p className="text-2xl font-black">200+</p>
+              <p className="text-xs text-white/65">Empresas apoyadas</p>
+            </div>
+          </div>
+        </div>
+
+        {/* CARRUSEL INFINITO */}
+        <div className="relative mt-10 w-full">
+          <div className="relative mx-auto overflow-hidden max-w-[320px] md:max-w-[704px] xl:max-w-[1092px]">
+            {/* SOMBRAS LATERALES */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-30 hidden w-24 bg-gradient-to-r from-[#061a3a] to-transparent md:block" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-30 hidden w-24 bg-gradient-to-l from-[#061a3a] to-transparent md:block" />
+
+            <div className="flex w-max animate-success-scroll gap-6 py-5 hover:[animation-play-state:paused]">
+              {displayVideos.map((video, index) => (
+                <div
+                  key={`${video.id}-${index}`}
+                  className="w-[320px] shrink-0 md:w-[340px]"
+                >
+                  <a
+                    href={video.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative block h-full overflow-hidden rounded-[26px] border border-white/12 bg-white/[0.05] shadow-[0_24px_70px_rgba(0,0,0,0.35)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-3 hover:border-blue-400/50 hover:bg-white/[0.08]"
+                  >
+                    {/* IMAGEN */}
+                    <div className="relative h-[190px] overflow-hidden">
+                      <img
+                        src={video.thumbnail}
+                        alt={video.title}
+                        className="h-full w-full object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100"
+                      />
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#061a3a] via-[#061a3a]/25 to-transparent" />
+
+                      {/* PLAY */}
+                      <div className="absolute left-5 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-blue-700 shadow-xl transition-all duration-300 group-hover:scale-110">
+                        <FontAwesomeIcon icon={faCirclePlay} className="text-2xl" />
+                      </div>
+                    </div>
+
+                    {/* CONTENIDO */}
+                    <div className="relative z-10 flex min-h-[220px] flex-col p-6">
+                      <span className="mb-3 inline-flex w-fit rounded-lg bg-blue-600 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-white">
+                        Caso de éxito
+                      </span>
+
+                      <h3 className="min-h-[58px] text-xl font-black leading-tight text-white">
+                        {video.title}
+                      </h3>
+
+                      <div className="mt-4 flex gap-3 text-sm leading-relaxed text-white/75">
+                        <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-blue-400 text-blue-400">
+                          <FontAwesomeIcon icon={faCheck} className="text-xs" />
+                        </div>
+
+                        <p className="min-h-[60px]">{video.description}</p>
+                      </div>
+
+                      <div className="mt-auto flex items-center gap-3 border-t border-white/10 pt-5 text-sm font-black text-white/90">
+                        <span>Ver testimonio</span>
+
+                        <span className="flex h-8 w-8 items-center justify-center rounded-full border border-blue-400/60 text-blue-300 transition-all duration-300 group-hover:translate-x-1 group-hover:bg-blue-600 group-hover:text-white">
+                          <FontAwesomeIcon icon={faArrowRight} className="text-xs" />
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* BOTONES INFERIORES */}
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href="https://youtube.com/playlist?list=PLfqikFL7EsZDHi1xsqM6hVje3N9uiiV44&si=PLd1YerfVwbtnUAx"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex w-full max-w-[320px] items-center justify-center gap-3 rounded-xl bg-blue-600 px-6 py-4 text-sm font-black text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-blue-500 sm:w-auto"
+          >
+            <FontAwesomeIcon icon={faTrophy} />
+            <span>Ver más casos de éxito</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/40 transition-all duration-300 group-hover:translate-x-1">
+              <FontAwesomeIcon icon={faArrowRight} className="text-xs" />
+            </span>
+          </a>
+
+          <a
+            href="https://www.youtube.com/@FSTNEGOCIOS"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex w-full max-w-[320px] items-center justify-center gap-3 rounded-xl border border-white/18 bg-white/[0.04] px-6 py-4 text-sm font-black text-white backdrop-blur-xl transition-all duration-300 hover:border-red-500/50 hover:bg-red-600/10 sm:w-auto"
+          >
+            <FontAwesomeIcon icon={faYoutube} />
+            <span>Suscríbete a nuestro canal</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/40 transition-all duration-300 group-hover:translate-x-1">
+              <FontAwesomeIcon icon={faArrowRight} className="text-xs" />
+            </span>
+          </a>
         </div>
       </div>
 
-      {/* Estilos locales para la animación infinita */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes infinite-scroll {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        .animate-infinite-scroll {
-          display: flex;
-          width: max-content; /* Esto está bien, pero el padre debe ser overflow-hidden */
-          animation: infinite-scroll 40s linear infinite;
-        }
-        /* Agregamos esto para asegurar que no haya scroll lateral en el body */
-        :global(body) {
-          overflow-x: hidden;
-          position: relative;
-          width: 100%;
-        }
-      `}} />
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes success-scroll {
+              from {
+                transform: translateX(0);
+              }
 
-      <div className="mt-16 text-center">
-        <a 
-          href="https://www.youtube.com/@FSTNEGOCIOS" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="group w-50 md:w-80 relative inline-flex items-center gap-4 bg-white/5 border border-white/10 hover:border-red-600/50 hover:bg-red-600/5 text-white font-black py-4 px-10 rounded-2xl transition-all duration-300"
-        >
-          <div className="absolute -inset-1 bg-red-600/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <span className="uppercase tracking-widest text-sm relative ">Suscríbete a nuestro canal</span>
-        </a>
-      </div>
+              to {
+                transform: translateX(-50%);
+              }
+            }
+
+            .animate-success-scroll {
+              animation: success-scroll 42s linear infinite;
+            }
+
+            @media (max-width: 768px) {
+              .animate-success-scroll {
+                animation-duration: 34s;
+              }
+            }
+          `,
+        }}
+      />
     </section>
-    )
+  );
+};
 
-}
-
-export default SuccesStorys
+export default SuccesStorys;
